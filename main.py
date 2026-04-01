@@ -52,11 +52,7 @@ class ImageScraperGUI:
         if saved_geom:
             self.root.geometry(saved_geom)
         else:
-            import platform
-            if platform.system() == 'Darwin':
-                self.root.attributes('-fullscreen', True)
-            else:
-                self.root.attributes('-zoomed', True)
+            self.root.geometry("900x650")
     
     def _load_config(self):
         if os.path.exists(CONFIG_FILE):
