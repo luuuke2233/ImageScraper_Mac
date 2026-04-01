@@ -345,7 +345,7 @@ class ImageScraperGUI:
         self._url_resize_timer = self.root.after(150, self._reflow_url_preview)
     
     def _reflow_preview(self):
-        thumb_size = 120
+        thumb_size = 140
         canvas_width = self.preview_canvas.winfo_width()
         if canvas_width <= 1:
             return
@@ -361,7 +361,7 @@ class ImageScraperGUI:
             widget.grid(row=row, column=col, padx=8, pady=8)
     
     def _reflow_url_preview(self):
-        thumb_size = 120
+        thumb_size = 140
         canvas_width = self.url_preview_canvas.winfo_width()
         if canvas_width <= 1:
             return
@@ -569,7 +569,7 @@ class ImageScraperGUI:
         
         self._clear_preview()
         
-        thumb_size = 120
+        thumb_size = 140
         thumb_dim = (thumb_size, thumb_size)
         
         canvas_width = self.preview_canvas.winfo_width()
@@ -1028,7 +1028,7 @@ class ImageScraperGUI:
     def _update_url_preview(self):
         self._clear_url_preview()
         
-        thumb_size = 120
+        thumb_size = 140
         thumb_dim = (thumb_size, thumb_size)
         
         canvas_width = self.url_preview_canvas.winfo_width()
