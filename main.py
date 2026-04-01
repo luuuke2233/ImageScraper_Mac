@@ -329,11 +329,7 @@ class ImageScraperGUI:
         self._url_resize_timer = self.root.after(150, self._reflow_url_preview)
     
     def _reflow_preview(self):
-        thumb_size = 155
-        canvas_width = self.preview_canvas.winfo_width()
-        if canvas_width <= 1:
-            return
-        new_cols = max(1, canvas_width // (thumb_size + 20))
+        new_cols = 5
         
         if new_cols == self._cols:
             return
@@ -348,11 +344,7 @@ class ImageScraperGUI:
             self.preview_inner.columnconfigure(c, weight=1)
     
     def _reflow_url_preview(self):
-        thumb_size = 155
-        canvas_width = self.url_preview_canvas.winfo_width()
-        if canvas_width <= 1:
-            return
-        new_cols = max(1, canvas_width // (thumb_size + 20))
+        new_cols = 5
         
         if new_cols == self._url_cols:
             return
@@ -558,14 +550,13 @@ class ImageScraperGUI:
         
         self._clear_preview()
         
-        thumb_size = 155
-        thumb_dim = (thumb_size, thumb_size)
-        
         canvas_width = self.preview_canvas.winfo_width()
         if canvas_width > 1:
-            cols = max(1, canvas_width // (thumb_size + 20))
+            thumb_size = max(50, (canvas_width - 16) // 5)
         else:
-            cols = 5
+            thumb_size = 155
+        thumb_dim = (thumb_size, thumb_size)
+        cols = 5
         
         for i, img in enumerate(self.images):
             row = i // cols
@@ -1025,14 +1016,13 @@ class ImageScraperGUI:
     def _update_url_preview(self):
         self._clear_url_preview()
         
-        thumb_size = 155
-        thumb_dim = (thumb_size, thumb_size)
-        
         canvas_width = self.url_preview_canvas.winfo_width()
         if canvas_width > 1:
-            cols = max(1, canvas_width // (thumb_size + 20))
+            thumb_size = max(50, (canvas_width - 16) // 5)
         else:
-            cols = 5
+            thumb_size = 155
+        thumb_dim = (thumb_size, thumb_size)
+        cols = 5
         
         for i, img in enumerate(self.url_images):
             row = i // cols
