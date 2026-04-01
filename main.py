@@ -575,10 +575,11 @@ class ImageScraperGUI:
             border_color = '#0078d4' if is_selected else 'white'
             
             frame = tk.Frame(self.preview_inner, bg=border_color, bd=3, relief=tk.RAISED,
-                             cursor="hand2")
+                             cursor="hand2", width=thumb_size+6, height=thumb_size+6)
             frame.grid(row=row, column=col, padx=8, pady=8, sticky=tk.NSEW)
+            frame.grid_propagate(False)
             
-            thumb_label = tk.Label(frame, bg='white', width=thumb_size, height=thumb_size,
+            thumb_label = tk.Label(frame, bg='white', width=20, height=12,
                                    text="加载中...", fg='#999', compound=tk.CENTER,
                                    cursor="hand2")
             thumb_label.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
@@ -1038,10 +1039,11 @@ class ImageScraperGUI:
             col = i % cols
             
             frame = tk.Frame(self.url_preview_inner, bg='white', bd=3, relief=tk.RAISED,
-                             cursor="hand2")
+                             cursor="hand2", width=thumb_size+6, height=thumb_size+6)
             frame.grid(row=row, column=col, padx=8, pady=8, sticky=tk.NSEW)
+            frame.grid_propagate(False)
             
-            thumb_label = tk.Label(frame, bg='white', width=thumb_size, height=thumb_size,
+            thumb_label = tk.Label(frame, bg='white', width=20, height=12,
                                    text="加载中...", fg='#999', compound=tk.CENTER,
                                    cursor="hand2")
             thumb_label.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
