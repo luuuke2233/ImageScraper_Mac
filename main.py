@@ -258,9 +258,11 @@ class ImageScraperGUI:
         self.preview_canvas.bind("<MouseWheel>", self._on_preview_mousewheel)
         self.preview_canvas.bind("<Button-4>", self._on_preview_mousewheel)
         self.preview_canvas.bind("<Button-5>", self._on_preview_mousewheel)
+        self.preview_canvas.bind("<Shift-MouseWheel>", self._on_preview_mousewheel)
         self.preview_inner.bind("<MouseWheel>", self._on_preview_mousewheel)
         self.preview_inner.bind("<Button-4>", self._on_preview_mousewheel)
         self.preview_inner.bind("<Button-5>", self._on_preview_mousewheel)
+        self.preview_inner.bind("<Shift-MouseWheel>", self._on_preview_mousewheel)
         self.preview_canvas.bind("<Configure>", self._on_resize)
     
     def _setup_url_preview_area(self, parent):
@@ -288,9 +290,11 @@ class ImageScraperGUI:
         self.url_preview_canvas.bind("<MouseWheel>", self._on_url_mousewheel)
         self.url_preview_canvas.bind("<Button-4>", self._on_url_mousewheel)
         self.url_preview_canvas.bind("<Button-5>", self._on_url_mousewheel)
+        self.url_preview_canvas.bind("<Shift-MouseWheel>", self._on_url_mousewheel)
         self.url_preview_inner.bind("<MouseWheel>", self._on_url_mousewheel)
         self.url_preview_inner.bind("<Button-4>", self._on_url_mousewheel)
         self.url_preview_inner.bind("<Button-5>", self._on_url_mousewheel)
+        self.url_preview_inner.bind("<Shift-MouseWheel>", self._on_url_mousewheel)
         self.url_preview_canvas.bind("<Configure>", self._on_url_resize)
         
         self.url_thumbnails = []
@@ -301,17 +305,29 @@ class ImageScraperGUI:
         self._url_cols = 3
     
     def _on_preview_mousewheel(self, event):
-        if event.num == 4 or event.delta > 0:
-            self.preview_canvas.yview_scroll(-1, "units")
-        elif event.num == 5 or event.delta < 0:
-            self.preview_canvas.yview_scroll(1, "units")
+        if event.state & 0x1:  # Shift键按下时水平滚动
+            if event.delta > 0:
+                self.preview_canvas.xview_scroll(-1, "units")
+            elif event.delta < 0:
+                self.preview_canvas.xview_scroll(1, "units")
+        else:
+            if event.delta > 0:
+                self.preview_canvas.yview_scroll(-1, "units")
+            elif event.delta < 0:
+                self.preview_canvas.yview_scroll(1, "units")
         return "break"
     
     def _on_url_mousewheel(self, event):
-        if event.num == 4 or event.delta > 0:
-            self.url_preview_canvas.yview_scroll(-1, "units")
-        elif event.num == 5 or event.delta < 0:
-            self.url_preview_canvas.yview_scroll(1, "units")
+        if event.state & 0x1:  # Shift键按下时水平滚动
+            if event.delta > 0:
+                self.url_preview_canvas.xview_scroll(-1, "units")
+            elif event.delta < 0:
+                self.url_preview_canvas.xview_scroll(1, "units")
+        else:
+            if event.delta > 0:
+                self.url_preview_canvas.yview_scroll(-1, "units")
+            elif event.delta < 0:
+                self.url_preview_canvas.yview_scroll(1, "units")
         return "break"
     
     def _on_resize(self, event):
@@ -598,6 +614,7 @@ class ImageScraperGUI:
                 w.bind("<MouseWheel>", self._on_preview_mousewheel, add=True)
                 w.bind("<Button-4>", self._on_preview_mousewheel, add=True)
                 w.bind("<Button-5>", self._on_preview_mousewheel, add=True)
+                w.bind("<Shift-MouseWheel>", self._on_preview_mousewheel, add=True)
             
             self.thumb_widgets.append(frame)
             self.thumbnails.append({
@@ -1052,6 +1069,7 @@ class ImageScraperGUI:
                 w.bind("<MouseWheel>", self._on_url_mousewheel, add=True)
                 w.bind("<Button-4>", self._on_url_mousewheel, add=True)
                 w.bind("<Button-5>", self._on_url_mousewheel, add=True)
+                w.bind("<Shift-MouseWheel>", self._on_url_mousewheel, add=True)
             
             self.url_thumb_widgets.append(frame)
             self.url_thumbnails.append({
