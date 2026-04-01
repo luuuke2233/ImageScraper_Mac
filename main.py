@@ -345,7 +345,11 @@ class ImageScraperGUI:
         self._url_resize_timer = self.root.after(150, self._reflow_url_preview)
     
     def _reflow_preview(self):
-        new_cols = 6
+        thumb_size = 120
+        canvas_width = self.preview_canvas.winfo_width()
+        if canvas_width <= 1:
+            return
+        new_cols = max(1, canvas_width // (thumb_size + 20))
         
         if new_cols == self._cols:
             return
@@ -354,17 +358,14 @@ class ImageScraperGUI:
         for i, widget in enumerate(self.thumb_widgets):
             row = i // new_cols
             col = i % new_cols
-            widget.grid(row=row, column=col, padx=8, pady=8, sticky=tk.NSEW)
-        
-        for c in range(new_cols):
-            self.preview_inner.columnconfigure(c, weight=1)
-        
-        num_rows = (len(self.thumb_widgets) + new_cols - 1) // new_cols
-        for r in range(num_rows):
-            self.preview_inner.rowconfigure(r, weight=1)
+            widget.grid(row=row, column=col, padx=8, pady=8)
     
     def _reflow_url_preview(self):
-        new_cols = 6
+        thumb_size = 120
+        canvas_width = self.url_preview_canvas.winfo_width()
+        if canvas_width <= 1:
+            return
+        new_cols = max(1, canvas_width // (thumb_size + 20))
         
         if new_cols == self._url_cols:
             return
@@ -373,13 +374,7 @@ class ImageScraperGUI:
         for i, widget in enumerate(self.url_thumb_widgets):
             row = i // new_cols
             col = i % new_cols
-            widget.grid(row=row, column=col, padx=8, pady=8, sticky=tk.NSEW)
-        
-        for c in range(new_cols):
-            self.url_preview_inner.columnconfigure(c, weight=1)
-        
-        num_rows = (len(self.url_thumb_widgets) + new_cols - 1) // new_cols
-        for r in range(num_rows):
+            widget.grid(row=row, column=col, padx=8, pady=8)
             self.url_preview_inner.rowconfigure(r, weight=1)
     
     def _log(self, message):
@@ -574,13 +569,14 @@ class ImageScraperGUI:
         
         self._clear_preview()
         
+        thumb_size = 120
+        thumb_dim = (thumb_size, thumb_size)
+        
         canvas_width = self.preview_canvas.winfo_width()
         if canvas_width > 1:
-            thumb_size = max(50, (canvas_width - 16) // 6)
+            cols = max(1, canvas_width // (thumb_size + 20))
         else:
-            thumb_size = 120
-        thumb_dim = (thumb_size, thumb_size)
-        cols = 6
+            cols = 5
         
         for i, img in enumerate(self.images):
             row = i // cols
@@ -590,8 +586,9 @@ class ImageScraperGUI:
             border_color = '#0078d4' if is_selected else 'white'
             
             frame = tk.Frame(self.preview_inner, bg=border_color, bd=3, relief=tk.RAISED,
-                             cursor="hand2")
-            frame.grid(row=row, column=col, padx=8, pady=8, sticky=tk.NSEW)
+                             cursor="hand2", width=thumb_size, height=thumb_size)
+            frame.grid(row=row, column=col, padx=8, pady=8)
+            frame.grid_propagate(False)
             
             thumb_label = tk.Label(frame, bg='white',
                                    text="加载中...", fg='#999', compound=tk.CENTER,
@@ -636,13 +633,6 @@ class ImageScraperGUI:
             if thumb_url and i not in self._pending_thumbs:
                 self._pending_thumbs.add(i)
                 self._thumb_pool.submit(self._load_thumbnail, i, thumb_url, thumb_dim)
-        
-        for c in range(cols):
-            self.preview_inner.columnconfigure(c, weight=1)
-        
-        num_rows = (len(self.images) + cols - 1) // cols
-        for r in range(num_rows):
-            self.preview_inner.rowconfigure(r, weight=1)
         
         self._cols = cols
         self._preview_loaded = True
@@ -1038,21 +1028,23 @@ class ImageScraperGUI:
     def _update_url_preview(self):
         self._clear_url_preview()
         
+        thumb_size = 120
+        thumb_dim = (thumb_size, thumb_size)
+        
         canvas_width = self.url_preview_canvas.winfo_width()
         if canvas_width > 1:
-            thumb_size = max(50, (canvas_width - 16) // 6)
+            cols = max(1, canvas_width // (thumb_size + 20))
         else:
-            thumb_size = 120
-        thumb_dim = (thumb_size, thumb_size)
-        cols = 6
+            cols = 5
         
         for i, img in enumerate(self.url_images):
             row = i // cols
             col = i % cols
             
             frame = tk.Frame(self.url_preview_inner, bg='white', bd=3, relief=tk.RAISED,
-                             cursor="hand2")
-            frame.grid(row=row, column=col, padx=8, pady=8, sticky=tk.NSEW)
+                             cursor="hand2", width=thumb_size, height=thumb_size)
+            frame.grid(row=row, column=col, padx=8, pady=8)
+            frame.grid_propagate(False)
             
             thumb_label = tk.Label(frame, bg='white',
                                    text="加载中...", fg='#999', compound=tk.CENTER,
@@ -1093,13 +1085,6 @@ class ImageScraperGUI:
             thumb_url = img.get('thumb', '')
             if thumb_url:
                 self._thumb_pool.submit(self._load_url_thumbnail, i, thumb_url, thumb_dim)
-        
-        for c in range(cols):
-            self.url_preview_inner.columnconfigure(c, weight=1)
-        
-        num_rows = (len(self.url_images) + cols - 1) // cols
-        for r in range(num_rows):
-            self.url_preview_inner.rowconfigure(r, weight=1)
         
         self._url_cols = cols
         self._url_preview_loaded = True
