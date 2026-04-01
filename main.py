@@ -36,6 +36,7 @@ class ImageScraperGUI:
         self._resize_timer = None
         self._cols = 3
         self._selected_count = 0
+        self._last_selected_index = -1
         
         self.config = self._load_config()
         self.search_history = self.config.get('search_history', [])
@@ -664,6 +665,7 @@ class ImageScraperGUI:
             t['check_icon'].config(text="✓" if new_val else "", bg=color)
             if new_val:
                 self._selected_count += 1
+                self._last_selected_index = index
             else:
                 self._selected_count -= 1
             self.selected_count_var.set(f"已选: {self._selected_count} 张")
@@ -714,12 +716,14 @@ class ImageScraperGUI:
         return selected
     
     def _open_selected_source(self):
-        selected = self._get_selected_images()
-        if not selected:
+        if self._selected_count == 0:
             messagebox.showwarning("警告", "请先选中至少一张图片")
             return
         
-        img = selected[0]
+        if self._last_selected_index < 0 or self._last_selected_index >= len(self.images):
+            return
+        
+        img = self.images[self._last_selected_index]
         url = img.get('source_url', '')
         
         if url:
@@ -754,6 +758,7 @@ class ImageScraperGUI:
                 t['frame'].config(bg='white')
                 t['check_icon'].config(text="", bg='white')
         self._selected_count = 0
+        self._last_selected_index = -1
         self.selected_count_var.set("已选: 0 张")
         self.open_source_btn.config(state=tk.DISABLED)
     
