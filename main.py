@@ -358,6 +358,10 @@ class ImageScraperGUI:
         
         for c in range(new_cols):
             self.preview_inner.columnconfigure(c, weight=1)
+        
+        num_rows = (len(self.thumb_widgets) + new_cols - 1) // new_cols
+        for r in range(num_rows):
+            self.preview_inner.rowconfigure(r, weight=1)
     
     def _reflow_url_preview(self):
         new_cols = 6
@@ -373,6 +377,10 @@ class ImageScraperGUI:
         
         for c in range(new_cols):
             self.url_preview_inner.columnconfigure(c, weight=1)
+        
+        num_rows = (len(self.url_thumb_widgets) + new_cols - 1) // new_cols
+        for r in range(num_rows):
+            self.url_preview_inner.rowconfigure(r, weight=1)
     
     def _log(self, message):
         self.log_text.config(state=tk.NORMAL)
@@ -582,9 +590,8 @@ class ImageScraperGUI:
             border_color = '#0078d4' if is_selected else 'white'
             
             frame = tk.Frame(self.preview_inner, bg=border_color, bd=3, relief=tk.RAISED,
-                             cursor="hand2", width=thumb_size, height=thumb_size)
+                             cursor="hand2")
             frame.grid(row=row, column=col, padx=8, pady=8, sticky=tk.NSEW)
-            frame.grid_propagate(False)
             
             thumb_label = tk.Label(frame, bg='white',
                                    text="加载中...", fg='#999', compound=tk.CENTER,
@@ -632,6 +639,10 @@ class ImageScraperGUI:
         
         for c in range(cols):
             self.preview_inner.columnconfigure(c, weight=1)
+        
+        num_rows = (len(self.images) + cols - 1) // cols
+        for r in range(num_rows):
+            self.preview_inner.rowconfigure(r, weight=1)
         
         self._cols = cols
         self._preview_loaded = True
@@ -1040,9 +1051,8 @@ class ImageScraperGUI:
             col = i % cols
             
             frame = tk.Frame(self.url_preview_inner, bg='white', bd=3, relief=tk.RAISED,
-                             cursor="hand2", width=thumb_size, height=thumb_size)
+                             cursor="hand2")
             frame.grid(row=row, column=col, padx=8, pady=8, sticky=tk.NSEW)
-            frame.grid_propagate(False)
             
             thumb_label = tk.Label(frame, bg='white',
                                    text="加载中...", fg='#999', compound=tk.CENTER,
@@ -1086,6 +1096,10 @@ class ImageScraperGUI:
         
         for c in range(cols):
             self.url_preview_inner.columnconfigure(c, weight=1)
+        
+        num_rows = (len(self.url_images) + cols - 1) // cols
+        for r in range(num_rows):
+            self.url_preview_inner.rowconfigure(r, weight=1)
         
         self._url_cols = cols
         self._url_preview_loaded = True
