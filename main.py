@@ -630,7 +630,7 @@ class ImageScraperGUI:
     
     def _load_thumbnail(self, index, url, size):
         try:
-            resp = requests.get(url, timeout=10, stream=True)
+            resp = requests.get(url, timeout=5, stream=True)
             resp.raise_for_status()
             
             img_data = BytesIO(resp.content)
@@ -1083,7 +1083,7 @@ class ImageScraperGUI:
     
     def _load_url_thumbnail(self, index, url, size):
         try:
-            resp = requests.get(url, timeout=10, stream=True)
+            resp = requests.get(url, timeout=5, stream=True)
             resp.raise_for_status()
             
             img_data = BytesIO(resp.content)
