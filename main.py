@@ -570,7 +570,7 @@ class ImageScraperGUI:
             frame.grid(row=row, column=col, padx=8, pady=8, sticky=tk.NSEW)
             frame.grid_propagate(False)
             
-            thumb_label = tk.Label(frame, bg='white', width=thumb_size, height=thumb_size,
+            thumb_label = tk.Label(frame, bg='white',
                                    text="加载中...", fg='#999', compound=tk.CENTER,
                                    cursor="hand2")
             thumb_label.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
@@ -1027,7 +1027,7 @@ class ImageScraperGUI:
             frame.grid(row=row, column=col, padx=8, pady=8, sticky=tk.NSEW)
             frame.grid_propagate(False)
             
-            thumb_label = tk.Label(frame, bg='white', width=thumb_size, height=thumb_size,
+            thumb_label = tk.Label(frame, bg='white',
                                    text="加载中...", fg='#999', compound=tk.CENTER,
                                    cursor="hand2")
             thumb_label.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
