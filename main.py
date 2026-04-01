@@ -111,6 +111,7 @@ class ImageScraperGUI:
         win_frame.pack(fill=tk.X, pady=(0, 10))
         
         ttk.Button(win_frame, text="保存当前窗口大小", command=self._save_window_size).pack(anchor=tk.W, pady=2)
+        ttk.Button(win_frame, text="恢复初始窗口大小", command=self._reset_window_size).pack(anchor=tk.W, pady=2)
         
         # 缓存管理
         cache_frame = ttk.LabelFrame(parent, text="缓存管理", padding="10")
@@ -389,6 +390,12 @@ class ImageScraperGUI:
         self._save_config()
         self._log(f"已保存窗口大小: {geom}")
         messagebox.showinfo("成功", f"已保存当前窗口大小:\n{geom}")
+    
+    def _reset_window_size(self):
+        self.root.geometry("900x650")
+        self.config.pop('window_geometry', None)
+        self._save_config()
+        self._log("已恢复初始窗口大小: 900x650")
     
     def _get_scraper(self):
         return BingScraper()
