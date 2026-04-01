@@ -640,7 +640,10 @@ class ImageScraperGUI:
     
     def _load_thumbnail(self, index, url, size):
         try:
-            resp = requests.get(url, timeout=1, stream=True)
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            }
+            resp = requests.get(url, timeout=3, headers=headers)
             resp.raise_for_status()
             
             img_data = BytesIO(resp.content)
@@ -1092,7 +1095,10 @@ class ImageScraperGUI:
     
     def _load_url_thumbnail(self, index, url, size):
         try:
-            resp = requests.get(url, timeout=1, stream=True)
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            }
+            resp = requests.get(url, timeout=3, headers=headers)
             resp.raise_for_status()
             
             img_data = BytesIO(resp.content)
