@@ -645,13 +645,7 @@ class ImageScraperGUI:
     
     def _set_thumbnail_error(self, index):
         if index < len(self.thumbnails):
-            t = self.thumbnails[index]
-            t['frame'].destroy()
-            self.thumbnails.pop(index)
-            self.thumb_widgets.pop(index)
-            if index < len(self.images):
-                self.images.pop(index)
-            self._reflow_preview()
+            self.thumbnails[index]['frame'].grid_remove()
     
     def _toggle_select(self, index):
         if index < len(self.thumbnails):
@@ -1100,13 +1094,7 @@ class ImageScraperGUI:
     
     def _set_url_thumbnail_error(self, index):
         if index < len(self.url_thumbnails):
-            t = self.url_thumbnails[index]
-            t['frame'].destroy()
-            self.url_thumbnails.pop(index)
-            self.url_thumb_widgets.pop(index)
-            if index < len(self.url_images):
-                self.url_images.pop(index)
-            self._reflow_url_preview()
+            self.url_thumbnails[index]['frame'].grid_remove()
     
     def _url_toggle_select(self, index):
         if index < len(self.url_thumbnails):
