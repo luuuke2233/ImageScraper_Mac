@@ -17,7 +17,6 @@ A powerful macOS image scraping tool that supports keyword search (via Bing) and
 - **Batch Download**: Download selected or all images.
 - **Search History**: Quickly repeat previous searches (keeps last 5).
 - **Responsive UI**: Dynamic thumbnail grid that adapts to window size.
-- **Horizontal Scrolling**: Hold Shift + Scroll to scroll horizontally.
 - **Multi-language**: Supports English and Chinese (switch in Settings).
 
 ### Installation
@@ -82,7 +81,6 @@ MIT
 - **批量下载**：支持选中/全部下载
 - **搜索历史**：快速重复之前的搜索（保留5个搜索历史）
 - **响应式界面**：缩略图网格根据窗口大小动态调整
-- **水平滚动**：按住 Shift + 滚轮可左右滚动
 - **中英文切换**：在设置中可切换中英文界面
 
 ### 安装
