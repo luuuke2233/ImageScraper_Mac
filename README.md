@@ -7,7 +7,7 @@
 <a id="english"></a>
 ## English
 
-A powerful macOS image scraping tool that supports keyword search (via Bing) and image extraction from arbitrary web URLs.
+An easy-to-use macOS image scraping tool that supports keyword search (via Bing) and image extraction from arbitrary web URLs.
 
 ### Features
 
