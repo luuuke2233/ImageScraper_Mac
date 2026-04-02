@@ -9,8 +9,7 @@ mkdir -p "$APP_NAME/Contents/MacOS"
 
 cat > "$APP_NAME/Contents/MacOS/图片爬虫" << 'SCRIPT'
 #!/bin/bash
-DIR="$(cd "$(dirname "$0")/../../.." && pwd)"
-cd "$DIR"
+cd "$(dirname "$0")/../../../.."
 python3 main.py
 SCRIPT
 
