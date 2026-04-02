@@ -20,7 +20,7 @@ pip3 install requests beautifulsoup4 Pillow
 
 ## 运行
 
-**方式一**：双击 `run.sh` / 终端运行 `run.sh`
+**方式一**：终端运行 `run.sh`
 
 **方式二**：终端执行
 ```bash
