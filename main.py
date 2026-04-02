@@ -17,13 +17,157 @@ from downloader import ImageDownloader
 
 CONFIG_FILE = "config.json"
 
+LANG = {
+    'en': {
+        'app_title': 'Image Scraper',
+        'tab_search': 'Keyword Search',
+        'tab_url': 'URL Extract',
+        'tab_settings': 'Settings',
+        'save_dir': 'Save Directory',
+        'default_dir': 'Default directory:',
+        'browse': 'Browse...',
+        'save': 'Save',
+        'window_settings': 'Window Settings',
+        'save_window': 'Save Window Size',
+        'reset_window': 'Reset Window Size',
+        'cache': 'Cache',
+        'clear_cache': 'Clear Cache',
+        'log': 'Log',
+        'language': 'Language',
+        'search_settings': 'Search Settings',
+        'keyword': 'Keyword:',
+        'clear': 'Clear',
+        'history': 'History',
+        'download_count': 'Count:',
+        'search': 'Search',
+        'download_selected': 'Download Selected',
+        'download_all': 'Download All',
+        'go_source': 'Go to Source',
+        'deselect_all': 'Deselect All',
+        'stop': 'Stop',
+        'ready': 'Ready',
+        'selected': 'Selected: 0',
+        'search_results': 'Search Results',
+        'loading': 'Loading...',
+        'url_settings': 'URL Settings',
+        'web_url': 'Web URL:',
+        'filter_format': 'Filter:',
+        'comma_sep': '(comma separated)',
+        'extract': 'Extract Images',
+        'web_images': 'Web Images',
+        'search_history': 'Search History',
+        'no_history': 'No search history',
+        'clear_all': 'Clear All',
+        'close': 'Close',
+        'confirm': 'Confirm',
+        'confirm_clear_history': 'Clear all search history?',
+        'warning': 'Warning',
+        'enter_keyword': 'Please enter a keyword',
+        'enter_url': 'Please enter a URL',
+        'select_image': 'Please select at least one image',
+        'no_images': 'No images to download',
+        'select_download': 'Please select images to download',
+        'success': 'Success',
+        'saved_dir': 'Saved directory:',
+        'saved_window': 'Saved window size:',
+        'reset_done': 'Reset to initial size: 900x650',
+        'cleared_cache': 'Cache cleared',
+        'cleared_search': 'Search cleared',
+        'searching': 'Searching...',
+        'search_done': 'Found {0} images',
+        'search_error': 'Search error: {0}',
+        'downloading': 'Downloading {0}/{1}...',
+        'download_done': 'Done: {0} success, {1} failed',
+        'download_complete': 'Download complete!\nSuccess: {0}\nFailed: {1}\n\nSave dir: {2}',
+        'download_stopped': 'Download stopped',
+        'extracting': 'Extracting images...',
+        'extract_done': 'Found {0} images',
+        'extract_error': 'Extract error: {0}',
+        'opened_browser': 'Opened in browser: {0}...',
+        'open_browser_failed': 'Failed to open browser: {0}',
+        'no_source_url': 'No source URL, opened image URL: {0}...',
+        'no_url': 'Unable to get source URL',
+        'from': 'From',
+    },
+    'zh': {
+        'app_title': '图片爬虫工具',
+        'tab_search': '关键词搜索',
+        'tab_url': '网址提取',
+        'tab_settings': '设置',
+        'save_dir': '保存目录',
+        'default_dir': '默认保存目录:',
+        'browse': '浏览...',
+        'save': '保存',
+        'window_settings': '窗口设置',
+        'save_window': '保存当前窗口大小',
+        'reset_window': '恢复初始窗口大小',
+        'cache': '缓存管理',
+        'clear_cache': '清空缓存',
+        'log': '日志',
+        'language': '语言',
+        'search_settings': '搜索设置',
+        'keyword': '关键词:',
+        'clear': '清空',
+        'history': '历史',
+        'download_count': '下载数量:',
+        'search': '搜索图片',
+        'download_selected': '下载选中',
+        'download_all': '下载全部',
+        'go_source': '前往来源',
+        'deselect_all': '取消选中',
+        'stop': '停止',
+        'ready': '就绪',
+        'selected': '已选: 0 张',
+        'search_results': '搜索结果',
+        'loading': '加载中...',
+        'url_settings': '网址设置',
+        'web_url': '网页 URL:',
+        'filter_format': '过滤格式:',
+        'comma_sep': '(逗号分隔)',
+        'extract': '提取图片',
+        'web_images': '网页图片',
+        'search_history': '搜索历史',
+        'no_history': '暂无搜索历史',
+        'clear_all': '清空全部',
+        'close': '关闭',
+        'confirm': '确认',
+        'confirm_clear_history': '确定要清空所有搜索历史吗？',
+        'warning': '警告',
+        'enter_keyword': '请输入搜索关键词',
+        'enter_url': '请输入网页 URL',
+        'select_image': '请先选中至少一张图片',
+        'no_images': '没有可下载的图片',
+        'select_download': '请先选中要下载的图片',
+        'success': '成功',
+        'saved_dir': '已保存默认目录:',
+        'saved_window': '已保存当前窗口大小:',
+        'reset_done': '已恢复初始窗口大小: 900x650',
+        'cleared_cache': '已清空缓存',
+        'cleared_search': '已清空搜索',
+        'searching': '正在搜索...',
+        'search_done': '搜索完成，找到 {0} 张图片',
+        'search_error': '搜索错误: {0}',
+        'downloading': '正在下载 {0}/{1}...',
+        'download_done': '下载完成: 成功 {0} 张，失败 {1} 张',
+        'download_complete': '下载完成!\n成功: {0} 张\n失败: {1} 张\n\n保存目录: {2}',
+        'download_stopped': '下载已停止',
+        'extracting': '正在提取图片...',
+        'extract_done': '提取完成，找到 {0} 张图片',
+        'extract_error': '提取错误: {0}',
+        'opened_browser': '已在浏览器中打开: {0}...',
+        'open_browser_failed': '打开浏览器失败: {0}',
+        'no_source_url': '无来源链接，已打开图片 URL: {0}...',
+        'no_url': '无法获取来源链接或图片 URL',
+        'from': '正在从',
+    }
+}
+
 
 class ImageScraperGUI:
     """图片爬虫 GUI 界面"""
     
     def __init__(self, root):
         self.root = root
-        self.root.title("图片爬虫工具")
         self.root.resizable(True, True)
         
         self.scraper = None
@@ -40,6 +184,9 @@ class ImageScraperGUI:
         
         self.config = self._load_config()
         self.search_history = self.config.get('search_history', [])
+        self.lang = self.config.get('language', 'en')
+        
+        self.root.title(self.t('app_title'))
         
         self.tooltip = None
         self._thumb_pool = ThreadPoolExecutor(max_workers=4)
@@ -55,6 +202,9 @@ class ImageScraperGUI:
         else:
             self.root.geometry("900x650")
     
+    def t(self, key):
+        return LANG.get(self.lang, LANG['en']).get(key, key)
+    
     def _load_config(self):
         if os.path.exists(CONFIG_FILE):
             try:
@@ -67,11 +217,17 @@ class ImageScraperGUI:
     def _save_config(self):
         self.config['search_history'] = self.search_history
         self.config['default_output_dir'] = self.output_var.get()
+        self.config['language'] = self.lang
         try:
             with open(CONFIG_FILE, 'w', encoding='utf-8') as f:
                 json.dump(self.config, f, ensure_ascii=False, indent=2)
         except:
             pass
+    
+    def _switch_language(self, lang):
+        self.lang = lang
+        self._save_config()
+        messagebox.showinfo(self.t('success'), 'Language changed. Please restart the app.' if lang == 'en' else '语言已更改，请重启应用。')
     
     def _setup_ui(self):
         main_frame = ttk.Frame(self.root, padding="10")
@@ -81,47 +237,55 @@ class ImageScraperGUI:
         self.notebook.pack(fill=tk.BOTH, expand=True)
         
         search_tab = ttk.Frame(self.notebook, padding="10")
-        self.notebook.add(search_tab, text="关键词搜索")
+        self.notebook.add(search_tab, text=self.t('tab_search'))
         self._setup_search_tab(search_tab)
         
         url_tab = ttk.Frame(self.notebook, padding="10")
-        self.notebook.add(url_tab, text="网址提取")
+        self.notebook.add(url_tab, text=self.t('tab_url'))
         self._setup_url_tab(url_tab)
         
         settings_tab = ttk.Frame(self.notebook, padding="10")
-        self.notebook.add(settings_tab, text="设置")
+        self.notebook.add(settings_tab, text=self.t('tab_settings'))
         self._setup_settings_tab(settings_tab)
     
     def _setup_settings_tab(self, parent):
-        """设置标签页"""
         # 保存目录
-        dir_frame = ttk.LabelFrame(parent, text="保存目录", padding="10")
+        dir_frame = ttk.LabelFrame(parent, text=self.t('save_dir'), padding="10")
         dir_frame.pack(fill=tk.X, pady=(0, 10))
         
-        ttk.Label(dir_frame, text="默认保存目录:").pack(anchor=tk.W, pady=(0, 5))
+        ttk.Label(dir_frame, text=self.t('default_dir')).pack(anchor=tk.W, pady=(0, 5))
         dir_entry_frame = ttk.Frame(dir_frame)
         dir_entry_frame.pack(fill=tk.X, pady=(0, 5))
         
         self.output_var = tk.StringVar(value=self.config.get('default_output_dir', 'downloaded_images'))
         ttk.Entry(dir_entry_frame, textvariable=self.output_var).pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 5))
-        ttk.Button(dir_entry_frame, text="浏览...", command=self._browse_output).pack(side=tk.LEFT)
-        ttk.Button(dir_entry_frame, text="保存", command=self._save_default_dir).pack(side=tk.LEFT, padx=(5, 0))
+        ttk.Button(dir_entry_frame, text=self.t('browse'), command=self._browse_output).pack(side=tk.LEFT)
+        ttk.Button(dir_entry_frame, text=self.t('save'), command=self._save_default_dir).pack(side=tk.LEFT, padx=(5, 0))
+        
+        # 语言设置
+        lang_frame = ttk.LabelFrame(parent, text=self.t('language'), padding="10")
+        lang_frame.pack(fill=tk.X, pady=(0, 10))
+        
+        lang_btn_frame = ttk.Frame(lang_frame)
+        lang_btn_frame.pack(anchor=tk.W)
+        ttk.Button(lang_btn_frame, text="English", command=lambda: self._switch_language('en')).pack(side=tk.LEFT, padx=2)
+        ttk.Button(lang_btn_frame, text="中文", command=lambda: self._switch_language('zh')).pack(side=tk.LEFT, padx=2)
         
         # 窗口设置
-        win_frame = ttk.LabelFrame(parent, text="窗口设置", padding="10")
+        win_frame = ttk.LabelFrame(parent, text=self.t('window_settings'), padding="10")
         win_frame.pack(fill=tk.X, pady=(0, 10))
         
-        ttk.Button(win_frame, text="保存当前窗口大小", command=self._save_window_size).pack(anchor=tk.W, pady=2)
-        ttk.Button(win_frame, text="恢复初始窗口大小", command=self._reset_window_size).pack(anchor=tk.W, pady=2)
+        ttk.Button(win_frame, text=self.t('save_window'), command=self._save_window_size).pack(anchor=tk.W, pady=2)
+        ttk.Button(win_frame, text=self.t('reset_window'), command=self._reset_window_size).pack(anchor=tk.W, pady=2)
         
         # 缓存管理
-        cache_frame = ttk.LabelFrame(parent, text="缓存管理", padding="10")
+        cache_frame = ttk.LabelFrame(parent, text=self.t('cache'), padding="10")
         cache_frame.pack(fill=tk.X, pady=(0, 10))
         
-        ttk.Button(cache_frame, text="清空缓存", command=self._clear_cache).pack(anchor=tk.W, pady=2)
+        ttk.Button(cache_frame, text=self.t('clear_cache'), command=self._clear_cache).pack(anchor=tk.W, pady=2)
         
         # 日志
-        log_frame = ttk.LabelFrame(parent, text="日志", padding="10")
+        log_frame = ttk.LabelFrame(parent, text=self.t('log'), padding="10")
         log_frame.pack(fill=tk.BOTH, expand=True)
         
         self.log_text = scrolledtext.ScrolledText(log_frame, state=tk.DISABLED, wrap=tk.WORD, height=15)
@@ -132,29 +296,29 @@ class ImageScraperGUI:
         status_frame = ttk.Frame(parent)
         status_frame.pack(fill=tk.X, pady=(0, 5))
         
-        self.status_var = tk.StringVar(value="就绪")
+        self.status_var = tk.StringVar(value=self.t('ready'))
         ttk.Label(status_frame, textvariable=self.status_var).pack(side=tk.LEFT)
         
-        self.selected_count_var = tk.StringVar(value="已选: 0 张")
+        self.selected_count_var = tk.StringVar(value=self.t('selected'))
         ttk.Label(status_frame, textvariable=self.selected_count_var).pack(side=tk.RIGHT)
         
-        search_frame = ttk.LabelFrame(parent, text="搜索设置", padding="10")
+        search_frame = ttk.LabelFrame(parent, text=self.t('search_settings'), padding="10")
         search_frame.pack(fill=tk.X, pady=(0, 10))
         
-        ttk.Label(search_frame, text="关键词:").grid(row=0, column=0, sticky=tk.W, pady=5)
+        ttk.Label(search_frame, text=self.t('keyword')).grid(row=0, column=0, sticky=tk.W, pady=5)
         keyword_entry_frame = ttk.Frame(search_frame)
         keyword_entry_frame.grid(row=0, column=1, sticky=tk.W + tk.E, padx=5, pady=5)
         self.keyword_var = tk.StringVar()
         keyword_entry = ttk.Entry(keyword_entry_frame, textvariable=self.keyword_var, width=35)
         keyword_entry.pack(side=tk.LEFT, fill=tk.X, expand=True)
         keyword_entry.bind('<Return>', lambda e: self.search())
-        ttk.Button(keyword_entry_frame, text="清空", command=self._clear_search, width=6).pack(side=tk.LEFT, padx=(5, 0))
+        ttk.Button(keyword_entry_frame, text=self.t('clear'), command=self._clear_search, width=6).pack(side=tk.LEFT, padx=(5, 0))
         
         history_frame = ttk.Frame(search_frame)
         history_frame.grid(row=0, column=2, padx=5, pady=5)
-        ttk.Button(history_frame, text="历史", command=self._show_history, width=6).pack(side=tk.LEFT, padx=2)
+        ttk.Button(history_frame, text=self.t('history'), command=self._show_history, width=6).pack(side=tk.LEFT, padx=2)
         
-        ttk.Label(search_frame, text="下载数量:").grid(row=2, column=0, sticky=tk.W, pady=5)
+        ttk.Label(search_frame, text=self.t('download_count')).grid(row=2, column=0, sticky=tk.W, pady=5)
         self.limit_var = tk.IntVar(value=20)
         limit_frame = ttk.Frame(search_frame)
         limit_frame.grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
@@ -168,73 +332,73 @@ class ImageScraperGUI:
         button_frame = ttk.Frame(parent)
         button_frame.pack(fill=tk.X, pady=(0, 10))
         
-        self.search_btn = ttk.Button(button_frame, text="搜索图片", command=self.search)
+        self.search_btn = ttk.Button(button_frame, text=self.t('search'), command=self.search)
         self.search_btn.pack(side=tk.LEFT, padx=5, ipadx=30, ipady=10)
         
-        self.download_btn = ttk.Button(button_frame, text="下载选中", command=self.download_selected, state=tk.DISABLED)
+        self.download_btn = ttk.Button(button_frame, text=self.t('download_selected'), command=self.download_selected, state=tk.DISABLED)
         self.download_btn.pack(side=tk.LEFT, padx=5)
         
-        self.download_all_btn = ttk.Button(button_frame, text="下载全部", command=self.download_all, state=tk.DISABLED)
+        self.download_all_btn = ttk.Button(button_frame, text=self.t('download_all'), command=self.download_all, state=tk.DISABLED)
         self.download_all_btn.pack(side=tk.LEFT, padx=5)
         
-        self.open_source_btn = ttk.Button(button_frame, text="前往来源", command=self._open_selected_source, state=tk.DISABLED)
+        self.open_source_btn = ttk.Button(button_frame, text=self.t('go_source'), command=self._open_selected_source, state=tk.DISABLED)
         self.open_source_btn.pack(side=tk.LEFT, padx=5)
         
-        self.deselect_all_btn = ttk.Button(button_frame, text="取消选中", command=self._deselect_all)
+        self.deselect_all_btn = ttk.Button(button_frame, text=self.t('deselect_all'), command=self._deselect_all)
         self.deselect_all_btn.pack(side=tk.LEFT, padx=5)
         
-        self.stop_btn = ttk.Button(button_frame, text="停止", command=self.stop, state=tk.DISABLED)
+        self.stop_btn = ttk.Button(button_frame, text=self.t('stop'), command=self.stop, state=tk.DISABLED)
         self.stop_btn.pack(side=tk.RIGHT, padx=5)
         
         # 状态栏
         status_frame = ttk.Frame(parent)
         status_frame.pack(fill=tk.X, pady=(5, 0))
         
-        self.status_var = tk.StringVar(value="就绪")
+        self.status_var = tk.StringVar(value=self.t('ready'))
         ttk.Label(status_frame, textvariable=self.status_var).pack(side=tk.LEFT)
         
-        self.selected_count_var = tk.StringVar(value="已选: 0 张")
+        self.selected_count_var = tk.StringVar(value=self.t('selected'))
         ttk.Label(status_frame, textvariable=self.selected_count_var).pack(side=tk.RIGHT)
         
         self._setup_preview_area(parent)
     
     def _setup_url_tab(self, parent):
-        url_frame = ttk.LabelFrame(parent, text="网址设置", padding="10")
+        url_frame = ttk.LabelFrame(parent, text=self.t('url_settings'), padding="10")
         url_frame.pack(fill=tk.X, pady=(0, 10))
         
-        ttk.Label(url_frame, text="网页 URL:").grid(row=0, column=0, sticky=tk.W, pady=5)
+        ttk.Label(url_frame, text=self.t('web_url')).grid(row=0, column=0, sticky=tk.W, pady=5)
         self.url_var = tk.StringVar()
         url_entry = ttk.Entry(url_frame, textvariable=self.url_var, width=60)
         url_entry.grid(row=0, column=1, sticky=tk.W + tk.E, padx=5, pady=5)
         url_entry.bind('<Return>', lambda e: self.extract_from_url())
         
-        ttk.Label(url_frame, text="过滤格式:").grid(row=1, column=0, sticky=tk.W, pady=5)
+        ttk.Label(url_frame, text=self.t('filter_format')).grid(row=1, column=0, sticky=tk.W, pady=5)
         self.filter_var = tk.StringVar(value="jpg,jpeg,png,gif,webp")
         filter_entry = ttk.Entry(url_frame, textvariable=self.filter_var, width=40)
         filter_entry.grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
-        ttk.Label(url_frame, text="(逗号分隔)").grid(row=1, column=2, sticky=tk.W, padx=5, pady=5)
+        ttk.Label(url_frame, text=self.t('comma_sep')).grid(row=1, column=2, sticky=tk.W, padx=5, pady=5)
         
         url_frame.columnconfigure(1, weight=1)
         
         url_button_frame = ttk.Frame(parent)
         url_button_frame.pack(fill=tk.X, pady=(0, 10))
         
-        self.url_extract_btn = ttk.Button(url_button_frame, text="提取图片", command=self.extract_from_url)
+        self.url_extract_btn = ttk.Button(url_button_frame, text=self.t('extract'), command=self.extract_from_url)
         self.url_extract_btn.pack(side=tk.LEFT, padx=5, ipadx=30, ipady=10)
         
-        self.url_download_btn = ttk.Button(url_button_frame, text="下载选中", command=self.url_download_selected, state=tk.DISABLED)
+        self.url_download_btn = ttk.Button(url_button_frame, text=self.t('download_selected'), command=self.url_download_selected, state=tk.DISABLED)
         self.url_download_btn.pack(side=tk.LEFT, padx=5)
         
-        self.url_download_all_btn = ttk.Button(url_button_frame, text="下载全部", command=self.url_download_all, state=tk.DISABLED)
+        self.url_download_all_btn = ttk.Button(url_button_frame, text=self.t('download_all'), command=self.url_download_all, state=tk.DISABLED)
         self.url_download_all_btn.pack(side=tk.LEFT, padx=5)
         
-        self.url_stop_btn = ttk.Button(url_button_frame, text="停止", command=self.stop, state=tk.DISABLED)
+        self.url_stop_btn = ttk.Button(url_button_frame, text=self.t('stop'), command=self.stop, state=tk.DISABLED)
         self.url_stop_btn.pack(side=tk.RIGHT, padx=5)
         
         self._setup_url_preview_area(parent)
     
     def _setup_preview_area(self, parent):
-        preview_frame = ttk.LabelFrame(parent, text="搜索结果", padding="5")
+        preview_frame = ttk.LabelFrame(parent, text=self.t('search_results'), padding="5")
         preview_frame.pack(fill=tk.BOTH, expand=True, pady=(0, 10))
         
         self.preview_canvas = tk.Canvas(preview_frame, bg='#f0f0f0', highlightthickness=0)
@@ -266,7 +430,7 @@ class ImageScraperGUI:
         self.preview_canvas.bind("<Configure>", self._on_resize)
     
     def _setup_url_preview_area(self, parent):
-        url_preview_frame = ttk.LabelFrame(parent, text="网页图片", padding="5")
+        url_preview_frame = ttk.LabelFrame(parent, text=self.t('web_images'), padding="5")
         url_preview_frame.pack(fill=tk.BOTH, expand=True, pady=(0, 10))
         
         self.url_preview_canvas = tk.Canvas(url_preview_frame, bg='#f0f0f0', highlightthickness=0)
@@ -393,21 +557,21 @@ class ImageScraperGUI:
         if current_dir:
             self.config['default_output_dir'] = current_dir
             self._save_config()
-            self._log(f"已保存默认目录: {current_dir}")
-            messagebox.showinfo("成功", f"已保存默认目录:\n{current_dir}")
+            self._log(f"{self.t('saved_dir')} {current_dir}")
+            messagebox.showinfo(self.t('success'), f"{self.t('saved_dir')}\n{current_dir}")
     
     def _save_window_size(self):
         geom = self.root.geometry()
         self.config['window_geometry'] = geom
         self._save_config()
-        self._log(f"已保存窗口大小: {geom}")
-        messagebox.showinfo("成功", f"已保存当前窗口大小:\n{geom}")
+        self._log(f"{self.t('saved_window')} {geom}")
+        messagebox.showinfo(self.t('success'), f"{self.t('saved_window')}\n{geom}")
     
     def _reset_window_size(self):
         self.root.geometry("900x650")
         self.config.pop('window_geometry', None)
         self._save_config()
-        self._log("已恢复初始窗口大小: 900x650")
+        self._log(self.t('reset_done'))
     
     def _get_scraper(self):
         return BingScraper()
@@ -418,8 +582,8 @@ class ImageScraperGUI:
         self._clear_preview()
         self.download_btn.config(state=tk.DISABLED)
         self.download_all_btn.config(state=tk.DISABLED)
-        self.status_var.set("就绪")
-        self._log("已清空搜索")
+        self.status_var.set(self.t('ready'))
+        self._log(self.t('cleared_search'))
     
     def _add_to_history(self, keyword):
         keyword = keyword.strip()
@@ -434,16 +598,16 @@ class ImageScraperGUI:
     
     def _show_history(self):
         if not self.search_history:
-            messagebox.showinfo("搜索历史", "暂无搜索历史")
+            messagebox.showinfo(self.t('search_history'), self.t('no_history'))
             return
         
         win = tk.Toplevel(self.root)
-        win.title("搜索历史")
+        win.title(self.t('search_history'))
         win.geometry("450x500")
         win.transient(self.root)
         win.grab_set()
         
-        ttk.Label(win, text="搜索历史", font=('Arial', 12, 'bold')).pack(pady=10)
+        ttk.Label(win, text=self.t('search_history'), font=('Arial', 12, 'bold')).pack(pady=10)
         
         scroll_frame = ttk.Frame(win)
         scroll_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
@@ -491,13 +655,13 @@ class ImageScraperGUI:
         btn_frame.pack(fill=tk.X, padx=10, pady=10)
         
         def clear_all():
-            if messagebox.askyesno("确认", "确定要清空所有搜索历史吗？"):
+            if messagebox.askyesno(self.t('confirm'), self.t('confirm_clear_history')):
                 self.search_history.clear()
                 self._save_config()
                 win.destroy()
         
-        ttk.Button(btn_frame, text="清空全部", command=clear_all).pack(side=tk.LEFT, padx=5)
-        ttk.Button(btn_frame, text="关闭", command=win.destroy).pack(side=tk.RIGHT, padx=5)
+        ttk.Button(btn_frame, text=self.t('clear_all'), command=clear_all).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text=self.t('close'), command=win.destroy).pack(side=tk.RIGHT, padx=5)
     
     def _do_search_from_history(self, keyword):
         self.keyword_var.set(keyword)
@@ -508,13 +672,13 @@ class ImageScraperGUI:
     def search(self):
         keyword = self.keyword_var.get().strip()
         if not keyword:
-            messagebox.showwarning("警告", "请输入搜索关键词")
+            messagebox.showwarning(self.t('warning'), self.t('enter_keyword'))
             return
         
         self.is_running = True
         self.stop_btn.config(state=tk.NORMAL)
         self.search_btn.config(state=tk.DISABLED)
-        self.status_var.set("正在搜索...")
+        self.status_var.set(self.t('searching'))
         
         self.images = []
         self._clear_preview()
@@ -528,32 +692,32 @@ class ImageScraperGUI:
         self.thumb_widgets = []
         self.thumbnails = []
         self._pending_thumbs.clear()
-        self.selected_count_var.set("已选: 0 张")
+        self.selected_count_var.set(self.t('selected'))
     
     def _search_thread(self, keyword):
         self._add_to_history(keyword)
         try:
             self.scraper = self._get_scraper()
             if not self.scraper:
-                self.root.after(0, lambda: self._log("错误: 无法创建爬虫"))
+                self.root.after(0, lambda: self._log("Error: Cannot create scraper" if self.lang == 'en' else "错误: 无法创建爬虫"))
                 return
             
-            self.root.after(0, lambda: self._log(f"正在从 {self.scraper.get_name()} 搜索: {keyword}"))
+            self.root.after(0, lambda: self._log(f"{self.t('from')} {self.scraper.get_name()}: {keyword}"))
             
             limit = self.limit_var.get()
             self.images = self.scraper.search(keyword, limit=limit)
             
             def on_search_done():
-                self._log(f"搜索完成，找到 {len(self.images)} 张图片")
+                self._log(self.t('search_done').format(len(self.images)))
                 self._update_preview()
                 self.download_btn.config(state=tk.NORMAL if self.images else tk.DISABLED)
                 self.download_all_btn.config(state=tk.NORMAL if self.images else tk.DISABLED)
-                self.status_var.set(f"搜索完成，找到 {len(self.images)} 张图片")
+                self.status_var.set(self.t('search_done').format(len(self.images)))
             
             self.root.after(0, on_search_done)
             
         except Exception as e:
-            self.root.after(0, lambda: self._log(f"搜索错误: {e}"))
+            self.root.after(0, lambda: self._log(self.t('search_error').format(e)))
         finally:
             self.is_running = False
             def on_done():
@@ -591,7 +755,7 @@ class ImageScraperGUI:
             frame.grid_propagate(False)
             
             thumb_label = tk.Label(frame, bg='white',
-                                   text="加载中...", fg='#999', compound=tk.CENTER,
+                                   text=self.t('loading'), fg='#999', compound=tk.CENTER,
                                    cursor="hand2")
             thumb_label.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
             
@@ -681,12 +845,12 @@ class ImageScraperGUI:
                 self._last_selected_index = index
             else:
                 self._selected_count -= 1
-            self.selected_count_var.set(f"已选: {self._selected_count} 张")
+            self.selected_count_var.set(f"{self.t('selected').split(':')[0]}: {self._selected_count}")
             self.open_source_btn.config(state=tk.NORMAL if self._selected_count > 0 else tk.DISABLED)
     
     def _update_selected_count(self):
         count = sum(1 for t in self.thumbnails if t['selected'].get())
-        self.selected_count_var.set(f"已选: {count} 张")
+        self.selected_count_var.set(f"{self.t('selected').split(':')[0]}: {count}")
         self.open_source_btn.config(state=tk.NORMAL if count > 0 else tk.DISABLED)
     
     def _update_frame_border(self, index):
@@ -730,7 +894,7 @@ class ImageScraperGUI:
     
     def _open_selected_source(self):
         if self._selected_count == 0:
-            messagebox.showwarning("警告", "请先选中至少一张图片")
+            messagebox.showwarning(self.t('warning'), self.t('select_image'))
             return
         
         if self._last_selected_index < 0 or self._last_selected_index >= len(self.images):
@@ -746,9 +910,9 @@ class ImageScraperGUI:
                     os.system(f'open "{url}"')
                 else:
                     webbrowser.open(url)
-                self._log(f"已在浏览器中打开: {url[:80]}...")
+                self._log(self.t('opened_browser').format(url[:80]))
             except Exception as e:
-                self._log(f"打开浏览器失败: {e}")
+                self._log(self.t('open_browser_failed').format(e))
         else:
             img_url = img.get('url', '')
             if img_url:
@@ -758,11 +922,11 @@ class ImageScraperGUI:
                         os.system(f'open "{img_url}"')
                     else:
                         webbrowser.open(img_url)
-                    self._log(f"无来源链接，已打开图片 URL: {img_url[:80]}...")
+                    self._log(self.t('no_source_url').format(img_url[:80]))
                 except Exception as e:
-                    self._log(f"打开图片 URL 失败: {e}")
+                    self._log(self.t('open_browser_failed').format(e))
             else:
-                messagebox.showwarning("警告", "无法获取来源链接或图片 URL")
+                messagebox.showwarning(self.t('warning'), self.t('no_url'))
     
     def _deselect_all(self):
         for i, t in enumerate(self.thumbnails):
@@ -772,7 +936,7 @@ class ImageScraperGUI:
                 t['check_icon'].config(text="", bg='white')
         self._selected_count = 0
         self._last_selected_index = -1
-        self.selected_count_var.set("已选: 0 张")
+        self.selected_count_var.set(self.t('selected'))
         self.open_source_btn.config(state=tk.DISABLED)
     
     def _clear_cache(self):
@@ -784,18 +948,18 @@ class ImageScraperGUI:
             except:
                 pass
         gc.collect()
-        self._log("已清空缓存")
+        self._log(self.t('cleared_cache'))
     
     def download_selected(self):
         images = self._get_selected_images()
         if not images:
-            messagebox.showwarning("警告", "请先选中要下载的图片")
+            messagebox.showwarning(self.t('warning'), self.t('select_download'))
             return
         self._start_download(images)
     
     def download_all(self):
         if not self.images:
-            messagebox.showwarning("警告", "没有可下载的图片")
+            messagebox.showwarning(self.t('warning'), self.t('no_images'))
             return
         self._start_download(self.images.copy())
     
@@ -807,7 +971,7 @@ class ImageScraperGUI:
         self.stop_btn.config(state=tk.NORMAL)
         self.download_btn.config(state=tk.DISABLED)
         self.download_all_btn.config(state=tk.DISABLED)
-        self.status_var.set("正在下载...")
+        self.status_var.set(self.t('downloading'))
         
         self.downloader = ImageDownloader(output_dir=output_dir)
         
@@ -826,10 +990,10 @@ class ImageScraperGUI:
         try:
             for i, img in enumerate(images, 1):
                 if not self.is_running:
-                    self.root.after(0, lambda: self._log("下载已停止"))
+                    self.root.after(0, lambda: self._log(self.t('download_stopped')))
                     break
                 
-                self.root.after(0, lambda idx=i, tot=total: self.status_var.set(f"正在下载 {idx}/{tot}..."))
+                self.root.after(0, lambda idx=i, tot=total: self.status_var.set(self.t('downloading').format(idx, tot)))
                 
                 result = self.downloader.download(
                     img,
@@ -843,13 +1007,13 @@ class ImageScraperGUI:
                 else:
                     failed += 1
             
-            self.root.after(0, lambda: self._log(f"下载完成: 成功 {success} 张，失败 {failed} 张"))
-            self.root.after(0, lambda: self.status_var.set(f"下载完成: 成功 {success} 张，失败 {failed} 张"))
+            self.root.after(0, lambda: self._log(self.t('download_done').format(success, failed)))
+            self.root.after(0, lambda: self.status_var.set(self.t('download_done').format(success, failed)))
             
             if success > 0:
                 self.root.after(0, lambda: messagebox.showinfo(
-                    "完成",
-                    f"下载完成!\n成功: {success} 张\n失败: {failed} 张\n\n保存目录: {self.downloader.output_dir}"
+                    self.t('success'),
+                    self.t('download_complete').format(success, failed, self.downloader.output_dir)
                 ))
                 
         except Exception as e:
@@ -862,7 +1026,7 @@ class ImageScraperGUI:
     
     def stop(self):
         self.is_running = False
-        self.status_var.set("正在停止...")
+        self.status_var.set(self.t('stop'))
     
     def _on_close(self):
         self.is_running = False
@@ -874,7 +1038,7 @@ class ImageScraperGUI:
     def extract_from_url(self):
         url = self.url_var.get().strip()
         if not url:
-            messagebox.showwarning("警告", "请输入网页 URL")
+            messagebox.showwarning(self.t('warning'), self.t('enter_url'))
             return
         
         if not url.startswith(('http://', 'https://')):
@@ -884,7 +1048,7 @@ class ImageScraperGUI:
         self.is_running = True
         self.url_stop_btn.config(state=tk.NORMAL)
         self.url_extract_btn.config(state=tk.DISABLED)
-        self.status_var.set("正在提取图片...")
+        self.status_var.set(self.t('extracting'))
         
         self.url_images = []
         self._clear_url_preview()
@@ -897,11 +1061,11 @@ class ImageScraperGUI:
             widget.destroy()
         self.url_thumb_widgets = []
         self.url_thumbnails = []
-        self.selected_count_var.set("已选: 0 张")
+        self.selected_count_var.set(self.t('selected'))
     
     def _extract_thread(self, url):
         try:
-            self.root.after(0, lambda: self._log(f"正在获取网页: {url}"))
+            self.root.after(0, lambda: self._log(f"Fetching: {url}" if self.lang == 'en' else f"正在获取网页: {url}"))
             
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -912,7 +1076,7 @@ class ImageScraperGUI:
             resp = requests.get(url, headers=headers, timeout=15)
             resp.raise_for_status()
             
-            self.root.after(0, lambda: self._log(f"网页获取成功，大小: {len(resp.text)} 字节"))
+            self.root.after(0, lambda: self._log(f"OK: {len(resp.text)} bytes" if self.lang == 'en' else f"网页获取成功，大小: {len(resp.text)} 字节"))
             
             soup = BeautifulSoup(resp.text, 'html.parser')
             
@@ -993,14 +1157,14 @@ class ImageScraperGUI:
             
             self.url_images = images
             
-            self.root.after(0, lambda: self._log(f"提取完成，找到 {len(images)} 张图片"))
+            self.root.after(0, lambda: self._log(self.t('extract_done').format(len(images))))
             self.root.after(0, self._update_url_preview)
             self.root.after(0, lambda: self.url_download_btn.config(state=tk.NORMAL if images else tk.DISABLED))
             self.root.after(0, lambda: self.url_download_all_btn.config(state=tk.NORMAL if images else tk.DISABLED))
-            self.root.after(0, lambda: self.status_var.set(f"提取完成，找到 {len(images)} 张图片"))
+            self.root.after(0, lambda: self.status_var.set(self.t('extract_done').format(len(images))))
             
         except Exception as e:
-            self.root.after(0, lambda: self._log(f"提取错误: {e}"))
+            self.root.after(0, lambda: self._log(self.t('extract_error').format(e)))
         finally:
             self.is_running = False
             self.root.after(0, lambda: self.url_extract_btn.config(state=tk.NORMAL))
@@ -1050,7 +1214,7 @@ class ImageScraperGUI:
             frame.grid_propagate(False)
             
             thumb_label = tk.Label(frame, bg='white',
-                                   text="加载中...", fg='#999', compound=tk.CENTER,
+                                   text=self.t('loading'), fg='#999', compound=tk.CENTER,
                                    cursor="hand2")
             thumb_label.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
             
@@ -1131,7 +1295,7 @@ class ImageScraperGUI:
     
     def _update_url_selected_count(self):
         count = sum(1 for t in self.url_thumbnails if t['selected'].get())
-        self.selected_count_var.set(f"已选: {count} 张")
+        self.selected_count_var.set(f"{self.t('selected').split(':')[0]}: {count}")
     
     def _show_url_tooltip_for_frame(self, event, frame, index):
         if index >= len(self.url_thumbnails):
@@ -1161,13 +1325,13 @@ class ImageScraperGUI:
     def url_download_selected(self):
         images = self._get_url_selected_images()
         if not images:
-            messagebox.showwarning("警告", "请先选中要下载的图片")
+            messagebox.showwarning(self.t('warning'), self.t('select_download'))
             return
         self._start_url_download(images)
     
     def url_download_all(self):
         if not self.url_images:
-            messagebox.showwarning("警告", "没有可下载的图片")
+            messagebox.showwarning(self.t('warning'), self.t('no_images'))
             return
         self._start_url_download(self.url_images.copy())
     
@@ -1180,7 +1344,7 @@ class ImageScraperGUI:
         self.url_stop_btn.config(state=tk.NORMAL)
         self.url_download_btn.config(state=tk.DISABLED)
         self.url_download_all_btn.config(state=tk.DISABLED)
-        self.status_var.set("正在下载...")
+        self.status_var.set(self.t('downloading'))
         
         self.downloader = ImageDownloader(output_dir=output_dir)
         
@@ -1199,10 +1363,10 @@ class ImageScraperGUI:
         try:
             for i, img in enumerate(images, 1):
                 if not self.is_running:
-                    self.root.after(0, lambda: self._log("下载已停止"))
+                    self.root.after(0, lambda: self._log(self.t('download_stopped')))
                     break
                 
-                self.root.after(0, lambda idx=i, tot=total: self.status_var.set(f"正在下载 {idx}/{tot}..."))
+                self.root.after(0, lambda idx=i, tot=total: self.status_var.set(self.t('downloading').format(idx, tot)))
                 
                 result = self.downloader.download(
                     img,
@@ -1216,13 +1380,13 @@ class ImageScraperGUI:
                 else:
                     failed += 1
             
-            self.root.after(0, lambda: self._log(f"下载完成: 成功 {success} 张，失败 {failed} 张"))
-            self.root.after(0, lambda: self.status_var.set(f"下载完成: 成功 {success} 张，失败 {failed} 张"))
+            self.root.after(0, lambda: self._log(self.t('download_done').format(success, failed)))
+            self.root.after(0, lambda: self.status_var.set(self.t('download_done').format(success, failed)))
             
             if success > 0:
                 self.root.after(0, lambda: messagebox.showinfo(
-                    "完成",
-                    f"下载完成!\n成功: {success} 张\n失败: {failed} 张\n\n保存目录: {self.downloader.output_dir}"
+                    self.t('success'),
+                    self.t('download_complete').format(success, failed, self.downloader.output_dir)
                 ))
                 
         except Exception as e:
