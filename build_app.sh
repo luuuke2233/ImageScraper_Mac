@@ -2,18 +2,18 @@
 
 cd "$(dirname "$0")"
 
-APP_NAME="图片爬虫.app"
+APP_NAME="ImageScraper.app"
 
 rm -rf "$APP_NAME"
 mkdir -p "$APP_NAME/Contents/MacOS"
 
-cat > "$APP_NAME/Contents/MacOS/图片爬虫" << 'SCRIPT'
+cat > "$APP_NAME/Contents/MacOS/ImageScraper" << 'SCRIPT'
 #!/bin/bash
-cd "$(dirname "$0")/../../../.."
+cd "$(dirname "$0")/../../.."
 python3 main.py
 SCRIPT
 
-chmod +x "$APP_NAME/Contents/MacOS/图片爬虫"
+chmod +x "$APP_NAME/Contents/MacOS/ImageScraper"
 
 cat > "$APP_NAME/Contents/Info.plist" << 'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -21,7 +21,7 @@ cat > "$APP_NAME/Contents/Info.plist" << 'PLIST'
 <plist version="1.0">
 <dict>
     <key>CFBundleExecutable</key>
-    <string>图片爬虫</string>
+    <string>ImageScraper</string>
     <key>CFBundleIdentifier</key>
     <string>com.imagecrawler.app</string>
     <key>CFBundleName</key>
