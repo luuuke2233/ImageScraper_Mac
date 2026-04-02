@@ -1,44 +1,54 @@
 # ImageScraper Mac
 
-适用于M芯片系列的macbook 图片爬虫工具，支持关键词搜索（Bing）和网页图片提取。
+A powerful macOS image scraping tool that supports keyword search (via Bing) and image extraction from arbitrary web URLs.
 
-## 功能
+## Features
 
-- **关键词搜索**：通过 Bing 搜索并下载图片
-- **网址提取**：从任意网页提取图片
-- **缩略图预览**：可视化选择要下载的图片
-- **批量下载**：支持选中/全部下载
-- **搜索历史**：快速重复之前的搜索（保留5个搜索历史）
+- **Keyword Search**: Search and download images using Bing.
+- **URL Extraction**: Extract images from any webpage.
+- **Thumbnail Preview**: Visually select images to download.
+- **Batch Download**: Download selected or all images.
+- **Search History**: Quickly repeat previous searches (keeps last 5).
+- **Responsive UI**: Dynamic thumbnail grid that adapts to window size.
+- **Horizontal Scrolling**: Hold Shift + Scroll to scroll horizontally.
 
-## 安装
+## Installation
 
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:luuuke2233/ImageScraper_Mac.git
+   cd ImageScraper_Mac
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip3 install -r requirements.txt
+   ```
+
+## Usage
+
+**Option 1: Using the run script**
 ```bash
-git clone git@github.com:luuuke2233/ImageScraper_Mac.git
-cd ImageScraper_Mac
-pip3 install requests beautifulsoup4 Pillow
+bash run.sh
 ```
 
-## 运行
-
-**方式一**：终端运行 `run.sh`
-
-**方式二**：终端执行
+**Option 2: Using Python directly**
 ```bash
 python3 main.py
 ```
 
-## 项目结构
+## Project Structure
 
 ```
-├── main.py            # 主程序 GUI
-├── scraper_bing.py    # Bing 图片搜索
-├── scraper_base.py    # 爬虫基类
-├── downloader.py      # 图片下载器
-├── run.sh             # 一键运行脚本
-└── requirements.txt   # 依赖列表
+├── main.py            # Main GUI application
+├── scraper_bing.py    # Bing image search implementation
+├── scraper_base.py    # Base scraper class
+├── downloader.py      # Image downloader
+├── run.sh             # One-click run script
+└── requirements.txt   # Python dependencies
 ```
 
-## 依赖
+## Requirements
 
 - Python 3.8+
 - requests
