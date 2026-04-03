@@ -1,4 +1,4 @@
-# ImageScraper Mac
+# ImageScraper Mac 图片抓取
 
 [English](#english) | [中文](#中文)
 
